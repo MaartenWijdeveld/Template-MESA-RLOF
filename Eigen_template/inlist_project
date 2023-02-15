@@ -1,0 +1,64 @@
+&binary_job
+
+	inlist_names(1) = 'inlist1' 
+	! inlist_names(2) = 'inlist2'
+
+	evolve_both_stars = .false.
+
+/ ! end of binary_job namelist
+
+&binary_controls
+         
+! P H Y S I C A L   P A R A M E T E R S for the system      
+  m1 =   ! donor mass in Msun
+  m2 =   ! accretor mass in Msun
+	initial_period_in_days = -1d0  !15d0, if <0, below is used
+  initial_separation_in_Rsuns =  ! in Rsun units
+
+
+	! Mass transfer efficiency controls
+	limit_retention_by_mdot_edd = .false.   
+	! Set to fully conservative
+	mass_transfer_alpha = 0d0      ! fraction of mass lost from the vicinity of donor as fast wind 
+	mass_transfer_beta = 0d0       ! fraction of mass lost from the vicinity of accretor as fast wind
+	mass_transfer_delta = 0d0      ! fraction of mass lost from circumbinary coplanar toroid
+
+	! Orbital angular momentum controls
+	do_jdot_mb = .false.     ! Magnetic braking around accretor
+	do_jdot_gr = .false.     ! Gravitational radiation taken into account
+	do_jdot_ml = .true.      ! Mass loss, see mechanisms applied in mass_transfer_*
+
+
+
+	! Mass transfer scheme
+	mdot_scheme = "Kolb"
+
+	max_tries_to_achieve = 150      ! If this is <= 0 then explicit mass transfer scheme is used. default 20
+	! mass transfer will be computed explicitly until
+	! the explicit computation of mdot is > min_mdot_for_implicit
+	min_mdot_for_implicit = 1d-15    ! default 1d-16
+
+
+	! Timestep controls
+
+	! Solution is considered valid if 
+	! |(mdot-mdot_end)/mdot_end| < b% implicit_scheme_tolerance
+	implicit_scheme_tolerance = 1d-3    ! default 1d-2
+
+	fr = 0.01d0          ! change of relative Roche lobe gap (default 0.1)
+	fr_limit = 1d-4      ! Limit change
+	fr_dt_limit = 1d-1    ! Mimumum timestep limit allowed for fr in years
+
+	!fm = 0.001d0          ! default 0.01d0
+	!fm_limit = 1d-4      ! default 1d-3
+	!fdm = 0.001d0        ! default 0.005d0
+
+
+	terminal_interval = 1
+	report_rlo_solver_progress = .false.
+
+	
+	! terminate_if_L2_overflow = .true.
+         
+/ ! end of binary_controls namelist
+

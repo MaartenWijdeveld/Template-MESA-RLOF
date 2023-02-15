@@ -1,0 +1,294 @@
+
+&star_job
+
+  load_saved_model = .true.
+  saved_model_name = 'R_10.mod'
+
+  pgstar_flag = .false.
+
+  ! stop before terminate so that you can see the plots
+  pause_before_terminate = .false.
+
+  save_model_when_terminate = .true.
+  save_model_filename = 'final_model.mod'
+
+  set_initial_dt = .true.
+  years_for_initial_dt = 100
+
+  eosDT_cache_dir = 'mesa_cache/eosDT_cache'
+  eosPT_cache_dir = 'mesa_cache/eosPT_cache'
+  eosDE_cache_dir = 'mesa_cache/eosDE_cache'
+  ionization_cache_dir = 'mesa_cache/ionization_cache'
+  kap_cache_dir = 'mesa_cache/kap_cache'
+  rates_cache_dir = 'mesa_cache/rates_cache'
+
+! turn on 'hydro', i.e. evolve non-equilibrium stars...
+!    change_v_flag = .true.
+!    change_initial_v_flag = .false.
+!    new_v_flag = .true.
+
+
+/ ! end of star_job namelist
+
+
+
+&controls
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃  ██████╗ ██╗   ██╗████████╗██████╗ ██╗   ██╗████████╗ ┃
+! ┃ ██╔═══██╗██║   ██║╚══██╔══╝██╔══██╗██║   ██║╚══██╔══╝ ┃
+! ┃ ██║   ██║██║   ██║   ██║   ██████╔╝██║   ██║   ██║    ┃
+! ┃ ██║   ██║██║   ██║   ██║   ██╔═══╝ ██║   ██║   ██║    ┃
+! ┃ ╚██████╔╝╚██████╔╝   ██║   ██║     ╚██████╔╝   ██║    ┃
+! ┃  ╚═════╝  ╚═════╝    ╚═╝   ╚═╝      ╚═════╝    ╚═╝    ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ! extra_terminal_output_file = 'terminal_output_file_from_MESA.dat' 
+  photo_directory = 'photos1'
+  log_directory = 'LOGS1'
+
+  profile_interval = 40
+  max_num_profile_models = 400
+  history_interval = 10
+  terminal_interval = 100
+  write_header_frequency = 100
+
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃ ███████╗████████╗ ██████╗ ██████╗ ██████╗ ██╗███╗   ██╗ ██████╗  ┃
+! ┃ ██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝  ┃
+! ┃ ███████╗   ██║   ██║   ██║██████╔╝██████╔╝██║██╔██╗ ██║██║  ███╗ ┃
+! ┃ ╚════██║   ██║   ██║   ██║██╔═══╝ ██╔═══╝ ██║██║╚██╗██║██║   ██║ ┃
+! ┃ ███████║   ██║   ╚██████╔╝██║     ██║     ██║██║ ╚████║╚██████╔╝ ┃
+! ┃ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝  ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ! Stop at central helium abundance lower than this
+  ! xa_central_lower_limit_species(1) = 'he4'
+  ! xa_central_lower_limit_species(1) = 'h1'
+  ! xa_central_lower_limit(1) = 0.01
+
+  ! Stop when burning He:
+  ! power_he_burn_upper_limit = 1d-1   
+
+  envelope_mass_limit = 1d-6 ! Msun 
+  max_model_number = 100000
+  log_L_lower_limit = -3d0
+
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃ ██████╗ ██╗  ██╗██╗   ██╗███████╗██╗ ██████╗███████╗ ┃
+! ┃ ██╔══██╗██║  ██║╚██╗ ██╔╝██╔════╝██║██╔════╝██╔════╝ ┃
+! ┃ ██████╔╝███████║ ╚████╔╝ ███████╗██║██║     ███████╗ ┃
+! ┃ ██╔═══╝ ██╔══██║  ╚██╔╝  ╚════██║██║██║     ╚════██║ ┃
+! ┃ ██║     ██║  ██║   ██║   ███████║██║╚██████╗███████║ ┃
+! ┃ ╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝ ╚═════╝╚══════╝ ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+use_ledoux_criterion = .true.    ! Activate semiconvection
+! alpha_semiconvection = 1d0
+alpha_semiconvection = 0.1   ! see MIST ~ eq. 12
+! thermohaline_coeff = 666 ! really!! see MIST ~ eq. 13
+
+! T_mix_limit = 1d4  ! from test suite, Glenn has 8d4;6.1.3 in Oomen et al. (2019)
+
+mixing_length_alpha  = 1.82    ! As in MIST
+
+! MIST: core {f,f0} set to {0.016,0.08}, shell {0.0174, 0.0087}
+overshoot_f_above_nonburn_core = 0.016
+overshoot_f_above_nonburn_shell = 0.0174
+overshoot_f_below_nonburn_shell = 0.0174
+overshoot_f_above_burn_h_core = 0.016
+overshoot_f_above_burn_h_shell = 0.0174
+overshoot_f_below_burn_h_shell = 0.0174
+overshoot_f_above_burn_he_core = 0.016
+overshoot_f_above_burn_he_shell = 0.0174
+overshoot_f_below_burn_he_shell = 0.0174
+overshoot_f_above_burn_z_core = 0.016
+overshoot_f_above_burn_z_shell = 0.0174
+overshoot_f_below_burn_z_shell = 0.0174
+
+overshoot_f0_above_nonburn_core = 0.08
+overshoot_f0_above_nonburn_shell = 0.0087
+overshoot_f0_below_nonburn_shell = 0.0087
+overshoot_f0_above_burn_h_core = 0.08
+overshoot_f0_above_burn_h_shell = 0.0087
+overshoot_f0_below_burn_h_shell = 0.0087
+overshoot_f0_above_burn_he_core = 0.08
+overshoot_f0_above_burn_he_shell = 0.0087
+overshoot_f0_below_burn_he_shell = 0.0087
+overshoot_f0_above_burn_z_core = 0.08
+overshoot_f0_above_burn_z_shell = 0.0087
+overshoot_f0_below_burn_z_shell = 0.0087
+
+overshoot_below_noburn_shell_factor = 10  ! from test_suite/agb/inlist_agb
+
+
+cool_wind_full_on_T = 9.99d9
+hot_wind_full_on_T = 1d10 
+! cool_wind_RGB_scheme = 'Reimers'
+! cool_wind_AGB_scheme = 'Blocker'
+RGB_to_AGB_wind_switch = 1d-4
+! Reimers_scaling_factor = 0.8d0  
+! Blocker_scaling_factor = 0.7d0 ! 0.8d0    
+!  ! Wind mass loss
+cool_wind_RGB_scheme = 'Reimers'    ! from MIST paper
+Reimers_scaling_factor = 0.1d0    ! from MIST paper
+cool_wind_AGB_scheme = 'Blocker'
+Blocker_scaling_factor = 0.2d0     
+
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃ ███╗   ███╗███████╗███████╗██╗  ██╗██╗███╗   ██╗ ██████╗  ┃
+! ┃ ████╗ ████║██╔════╝██╔════╝██║  ██║██║████╗  ██║██╔════╝  ┃
+! ┃ ██╔████╔██║█████╗  ███████╗███████║██║██╔██╗ ██║██║  ███╗ ┃
+! ┃ ██║╚██╔╝██║██╔══╝  ╚════██║██╔══██║██║██║╚██╗██║██║   ██║ ┃
+! ┃ ██║ ╚═╝ ██║███████╗███████║██║  ██║██║██║ ╚████║╚██████╔╝ ┃
+! ┃ ╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝  ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+!   mesh_delta_coeff = 0.75
+!   xtra_coef_above_xtrans = 0.5  ! default: 1
+!   xtra_coef_below_xtrans = 0.5  ! default: 1
+  
+!   xa_function_species(1) = 'h1'
+!   xa_function_weight(1) = 80
+!   xa_function_param(1) = 1d-2
+!   xa_mesh_delta_coeff(1) = 0.3 ! let's go bananas
+
+!   xa_function_species(2) = 'he4'
+!   xa_function_weight(2) = 50
+!   xa_function_param(2) = 1d-2
+!   xa_mesh_delta_coeff(2) = 0.3   
+
+! ! These lines increase the resolution in areas with strong nuclear burning
+! ! Multiply the allowed change between adjacent cells by the following factors; 
+! ! (small factor => smaller allowed change => more cells).
+!   mesh_dlog_pp_dlogP_extra = 0.25
+!   mesh_dlog_cno_dlogP_extra = 0.25
+
+!   mesh_dlog_3alf_dlogP_extra = 0.225
+!   mesh_dlog_burn_c_dlogP_extra = 0.225
+!   mesh_dlog_burn_n_dlogP_extra = 0.225
+!   mesh_dlog_burn_o_dlogP_extra = 0.225
+
+  ! Increase resolution at points with large abs(dlogX/dlogP); logX = log10(X mass fraction).
+  mesh_logX_species(1) = 'h1'
+  mesh_logX_min_for_extra(1) = -6
+  mesh_dlogX_dlogP_extra(1) = 0.25
+
+  mesh_logX_species(1) = 'he4'
+  mesh_logX_min_for_extra(1) = -6
+  mesh_dlogX_dlogP_extra(1) = 0.25
+
+  ! extra resolution near edges of (non-)burning regions
+
+  ! xtra_coef_a_l_nb_czb = 1
+  ! xtra_dist_a_l_nb_czb = 0.2d0
+  xtra_coef_b_l_nb_czb = 0.25
+  xtra_dist_b_l_nb_czb = 0.2d0
+  xtra_coef_a_u_nb_czb = 0.5
+  xtra_dist_a_u_nb_czb = 0.1d0
+  ! xtra_coef_b_u_nb_czb = 1
+  ! xtra_dist_b_u_nb_czb = 0.2d0
+
+
+  ! xtra_coef_a_l_hb_czb = 1
+  ! xtra_dist_a_l_hb_czb = 0.2d0
+  xtra_coef_b_l_hb_czb = 0.15
+  xtra_dist_b_l_hb_czb = 0.2d0
+  xtra_coef_a_u_hb_czb = 0.25
+  xtra_dist_a_u_hb_czb = 0.2d0
+  ! xtra_coef_b_u_hb_czb = 1
+  ! xtra_dist_b_u_hb_czb = 0.2d0
+
+  ! xtra_coef_a_l_heb_czb = 1
+  ! xtra_dist_a_l_heb_czb = 0.2d0
+  xtra_coef_b_l_heb_czb = 0.25
+  xtra_dist_b_l_heb_czb = 0.2d0
+  xtra_coef_a_u_heb_czb = 0.25
+  xtra_dist_a_u_heb_czb = 0.2d0
+  ! xtra_coef_b_u_heb_czb = 1
+  ! xtra_dist_b_u_heb_czb = 0.2d0
+
+  ! xtra_coef_a_l_zb_czb = 1
+  ! xtra_dist_a_l_zb_czb = 0.2d0
+  xtra_coef_b_l_zb_czb = 0.25
+  xtra_dist_b_l_zb_czb = 0.2d0
+  xtra_coef_a_u_zb_czb = 0.25
+  xtra_dist_a_u_zb_czb = 0.2d0
+  ! xtra_coef_b_u_zb_czb = 1
+  ! xtra_dist_b_u_zb_czb = 0.2d0
+  log_tau_function_weight = 50
+  
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃  █████╗  ██████╗ ██████╗██╗   ██╗██████╗  █████╗  ██████╗██╗   ██╗ ┃
+! ┃ ██╔══██╗██╔════╝██╔════╝██║   ██║██╔══██╗██╔══██╗██╔════╝╚██╗ ██╔╝ ┃
+! ┃ ███████║██║     ██║     ██║   ██║██████╔╝███████║██║      ╚████╔╝  ┃
+! ┃ ██╔══██║██║     ██║     ██║   ██║██╔══██╗██╔══██║██║       ╚██╔╝   ┃
+! ┃ ██║  ██║╚██████╗╚██████╗╚██████╔╝██║  ██║██║  ██║╚██████╗   ██║    ┃
+! ┃ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝    ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  delta_HR_limit = 0.01d0
+  varcontrol_target = 1d-4    ! this is default
+
+  ! Limit for magnitude of max change in log10 radius at any cell boundary.
+  !delta_lgR_limit = 0.5d0    ! next timestep smaller if exceeds this
+  !delta_lgR_hard_limit = -1  ! retry if exceeds this
+
+  ! CpT_absMdot_div_L_limit = 5d-1    ! reduce next timestep if Mdot exceeds this x tau_th
+
+  use_dedt_form_of_energy_eqn = .true.
+  min_cell_energy_fraction_for_dedt_form = 0
+
+  use_eps_correction_for_KE_plus_PE_in_dLdm_eqn = .true.
+  use_eps_mdot = .true.
+
+  delta_lg_star_mass_limit = 1.0d-4     ! default 5d-3
+  delta_lg_star_mass_hard_limit = 1d-3    ! default OFF == -1
+
+  ! for AGB models, turn this off:
+  use_gold_tolerances = .true.
+
+  ! for AGB models, turn this on:
+  ! do_conv_premix = .true.
+  ! conv_premix_avoid_increase = .true. 
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃ ████████╗ █████╗ ██████╗ ██╗     ███████╗███████╗ ┃
+! ┃ ╚══██╔══╝██╔══██╗██╔══██╗██║     ██╔════╝██╔════╝ ┃
+! ┃    ██║   ███████║██████╔╝██║     █████╗  ███████╗ ┃
+! ┃    ██║   ██╔══██║██╔══██╗██║     ██╔══╝  ╚════██║ ┃
+! ┃    ██║   ██║  ██║██████╔╝███████╗███████╗███████║ ┃
+! ┃    ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚══════╝ ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  use_eosELM = .true.
+  use_eosDT2 = .false.
+  initial_z = 0.02d0
+
+  use_Type2_opacities = .true.
+  Zbase = 0.02d0
+
+! ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+! ┃ ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗  ██████╗ ██╗███╗   ██╗ ██████╗  ┃
+! ┃ ██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝ ██╔════╝ ██║████╗  ██║██╔════╝  ┃
+! ┃ ██║  ██║█████╗  ██████╔╝██║   ██║██║  ███╗██║  ███╗██║██╔██╗ ██║██║  ███╗ ┃
+! ┃ ██║  ██║██╔══╝  ██╔══██╗██║   ██║██║   ██║██║   ██║██║██║╚██╗██║██║   ██║ ┃
+! ┃ ██████╔╝███████╗██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝██║██║ ╚████║╚██████╔╝ ┃
+! ┃ ╚═════╝ ╚══════╝╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝  ┃
+! ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ! report_all_dt_limits = .true.
+  ! report_hydro_dt_info = .true.
+  ! report_why_dt_limits = .true.
+  report_hydro_solver_progress = .true.
+
+  ! For pin-pointing which zones cause trouble at 1 specific moment
+  ! hydro_inspectB_flag = .true.
+  ! hydro_dump_call_number = 195    ! <-- replace with call number of interest
+
+/ ! end of controls namelist
+
+
